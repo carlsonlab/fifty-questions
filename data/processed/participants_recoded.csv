@@ -1,0 +1,141 @@
+role,title,expertise
+Academic,Professor,Ecology and evolutionary biology; Data science and machine learning
+Academic,Graduate Student,Virology; Data science and machine learning; Microbiology
+Academic,Professor,Virology; Epidemiology and public health; Conservation and One Health
+Academic,Emeritus Professor,Virology; Biosecurity
+Academic,Professor,Epidemiology and public health; Data science and machine learning
+Academic,Professor,Epidemiology and public health; Microbiology; Immunology; Data science and machine learning
+Academic,Graduate Student,Data science and machine learning; Ecology and evolutionary biology; Epidemiology and public health; Social sciences; Climate science
+Academic,Postdoctoral Researcher,Ecology and evolutionary biology
+Academic,Assistant Professor,Virology; Entomology; Genomics; Ecology and evolutionary biology
+Academic,Research Scientist and Staff,Social sciences; Ecology and evolutionary biology; Conservation and One Health
+"Academic,Veterinarian",Assistant Professor,Statistics; Epidemiology and public health; Data science and machine learning; Conservation and One Health
+Academic,Postdoctoral Researcher,Virology; Data science and machine learning
+"Academic,Government",Research Scientist and Staff,Epidemiology and public health; Ecology and evolutionary biology; Data science and machine learning
+"Government,Academic",Assistant Professor,Ecology and evolutionary biology
+Academic,Professor,Epidemiology and public health; Data science and machine learning; Ecology and evolutionary biology
+Government,Director,Epidemiology and public health
+Academic,Assistant Professor,Virology; Ecology and evolutionary biology; Epidemiology and public health; Conservation and One Health
+Academic,Postdoctoral Researcher,Ecology and evolutionary biology; Biosecurity; Conservation and One Health
+Academic,Graduate Student,Virology; Ecology and evolutionary biology; Genomics
+Academic,Research Scientist and Staff,Genomics; Epidemiology and public health
+Academic,Director,Computational biology; Data science and machine learning
+Academic,Associate Professor,Ecology and evolutionary biology; Statistics
+"Government,Academic",Associate Professor,Ecology and evolutionary biology; Epidemiology and public health; Social sciences; Entomology
+"Academic,NGO,Veterinarian",Professor,Ecology and evolutionary biology; Epidemiology and public health
+"Academic,Veterinarian",Associate Professor,Epidemiology and public health; Data science and machine learning
+"Academic,NGO",Associate Professor,Ecology and evolutionary biology; Epidemiology and public health
+Academic,Associate Professor,Ecology and evolutionary biology
+Academic,Associate Professor,Ecology and evolutionary biology; Social sciences
+Academic,Postdoctoral Researcher,Not reported
+Academic,Professor,Virology
+"Academic,Clinician",Postdoctoral Researcher,Epidemiology and public health; Clinical medicine
+"Government,Academic",Research Scientist and Staff,Virology; Microbiology
+Academic,Assistant Professor,Ecology and evolutionary biology
+"Academic,Veterinarian",Associate Professor,Epidemiology and public health; Data science and machine learning; Veterinary science; Biosecurity; Conservation and One Health
+Academic,Graduate Student,Ecology and evolutionary biology
+Academic,Professor,Ecology and evolutionary biology; Social sciences
+"Academic,Private Sector",Director,Climate science; Conservation and One Health; Veterinary science
+Academic,Graduate Student,Climate science; Epidemiology and public health
+Academic,Assistant Professor,Entomology; Virology; Ecology and evolutionary biology
+Academic,Research Scientist and Staff,Genomics; Epidemiology and public health; Data science and machine learning
+Academic,Professor,Virology; Ecology and evolutionary biology; Entomology
+Academic,Research Scientist and Staff,Microbiology; Virology
+Academic,Associate Professor,Ecology and evolutionary biology; Immunology
+,Assistant Professor,Ecology and evolutionary biology; Data science and machine learning; Climate science
+Academic,Professor,Social sciences; Epidemiology and public health; Ecology and evolutionary biology
+"Veterinarian,NGO,Academic,Other",Director,Epidemiology and public health; Veterinary science; Conservation and One Health
+Academic,Professor,Data science and machine learning; Ecology and evolutionary biology
+Academic,Associate Professor,Ecology and evolutionary biology
+Academic,Professor,Ecology and evolutionary biology; Virology; Conservation and One Health
+Academic,Professor,Statistics; Ecology and evolutionary biology
+Academic,Associate Professor,Epidemiology and public health
+Academic,Assistant Professor,Epidemiology and public health; Social sciences; Biosecurity
+"Veterinarian,Academic",Professor,Veterinary science; Epidemiology and public health; Biosecurity
+Academic,Assistant Professor,Virology; Ecology and evolutionary biology
+Academic,Professor,Ecology and evolutionary biology; Veterinary science
+"Academic,Clinician,Other",Associate Professor,Epidemiology and public health; Clinical medicine; Biosecurity
+Academic,Professor,Virology; Epidemiology and public health; Genomics
+Academic,Graduate Student,Epidemiology and public health; Data science and machine learning
+Academic,Postdoctoral Researcher,Ecology and evolutionary biology; Epidemiology and public health; Genomics; Data science and machine learning; Conservation and One Health
+Academic,Research Scientist and Staff,Ecology and evolutionary biology; Climate science; Statistics; Epidemiology and public health
+Academic,Postdoctoral Researcher,Virology; Microbiology; Immunology
+NGO,Research Scientist and Staff,Ecology and evolutionary biology; Social sciences; Conservation and One Health; Biosecurity
+"Government,Academic",Research Scientist and Staff,Genomics; Epidemiology and public health; Computational biology
+Academic,Research Scientist and Staff,Ecology and evolutionary biology; Data science and machine learning
+"Academic,Government",Director,Entomology; Ecology and evolutionary biology
+Academic,Emeritus Professor,Ecology and evolutionary biology; Genomics; Conservation and One Health
+Academic,Assistant Professor,Data science and machine learning; Ecology and evolutionary biology
+Academic,Graduate Student,Ecology and evolutionary biology; Virology
+Academic,Director,Microbiology
+Academic,Associate Professor,Ecology and evolutionary biology; Epidemiology and public health
+Academic,,Ecology and evolutionary biology; Data science and machine learning; Climate science
+Academic,Professor,Epidemiology and public health
+Academic,Research Scientist and Staff,Epidemiology and public health; Ecology and evolutionary biology; Virology; Genomics
+Academic,Postdoctoral Researcher,Data science and machine learning; Immunology; Computational biology
+Academic,Graduate Student,Ecology and evolutionary biology; Immunology
+Academic,Postdoctoral Researcher,Epidemiology and public health; Data science and machine learning
+Academic,Assistant Professor,Epidemiology and public health
+Academic,Assistant Professor,Epidemiology and public health; Data science and machine learning
+Academic,Research Scientist and Staff,Data science and machine learning; Ecology and evolutionary biology
+Academic,Postdoctoral Researcher,Ecology and evolutionary biology; Data science and machine learning
+Academic,Professor,Not reported
+Academic,Associate Professor,Genomics; Epidemiology and public health
+Academic,Assistant Professor,Genomics; Ecology and evolutionary biology; Data science and machine learning; Epidemiology and public health
+"Academic,Clinician",Graduate Student,Epidemiology and public health; Immunology
+Academic,Assistant Professor,Genomics; Ecology and evolutionary biology; Conservation and One Health
+Academic,Graduate Student,Ecology and evolutionary biology
+Academic,Assistant Professor,Ecology and evolutionary biology; Microbiology
+Academic,Research Scientist and Staff,Epidemiology and public health; Biosecurity
+Academic,Assistant Professor,Ecology and evolutionary biology; Epidemiology and public health
+Academic,Assistant Professor,Social sciences; Epidemiology and public health; Ecology and evolutionary biology
+"Private Sector,NGO",Director,Social sciences
+Academic,Graduate Student,Data science and machine learning; Ecology and evolutionary biology
+Academic,Graduate Student,Ecology and evolutionary biology; Virology
+Private Sector,Director,Not reported
+Academic,Postdoctoral Researcher,Ecology and evolutionary biology; Conservation and One Health
+Academic,Graduate Student,Statistics; Genomics; Data science and machine learning; Epidemiology and public health
+"Academic,Veterinarian",Postdoctoral Researcher,Veterinary science; Epidemiology and public health; Social sciences; Conservation and One Health
+Academic,Graduate Student,Ecology and evolutionary biology; Conservation and One Health
+"Academic,Veterinarian",Research Scientist and Staff,Ecology and evolutionary biology; Veterinary science
+Academic,Postdoctoral Researcher,Ecology and evolutionary biology
+Academic,Graduate Student,Virology; Immunology; Epidemiology and public health; Biosecurity
+"Veterinarian,Academic,Government",Research Scientist and Staff,Veterinary science; Entomology; Epidemiology and public health
+Veterinarian,Emeritus Professor,Veterinary science; Epidemiology and public health
+Academic,Research Scientist and Staff,Ecology and evolutionary biology; Genomics; Data science and machine learning
+Other,,Epidemiology and public health; Clinical medicine; Conservation and One Health
+"Academic,NGO",Research Scientist and Staff,Social sciences; Epidemiology and public health; Data science and machine learning
+Academic,Research Scientist and Staff,Ecology and evolutionary biology; Climate science
+"Other,Veterinarian,Academic",Research Scientist and Staff,Epidemiology and public health
+Academic,Research Scientist and Staff,Ecology and evolutionary biology; Conservation and One Health
+Academic,Research Scientist and Staff,Ecology and evolutionary biology; Social sciences
+Academic,Associate Professor,Genomics; Epidemiology and public health; Data science and machine learning
+Government,Research Scientist and Staff,Ecology and evolutionary biology; Epidemiology and public health; Biosecurity
+"Veterinarian,Academic",Graduate Student,Epidemiology and public health; Data science and machine learning
+Academic,Professor,Epidemiology and public health
+Academic,Assistant Professor,Ecology and evolutionary biology; Immunology; Genomics
+Academic,Graduate Student,Ecology and evolutionary biology; Microbiology; Immunology
+Academic,Professor,Ecology and evolutionary biology; Data science and machine learning
+Academic,Director,Ecology and evolutionary biology; Conservation and One Health
+Academic,Associate Professor,Ecology and evolutionary biology; Epidemiology and public health
+Academic,Postdoctoral Researcher,Epidemiology and public health; Climate science; Data science and machine learning
+"Academic,Clinician,Veterinarian",Professor,Epidemiology and public health; Veterinary science
+Academic,Graduate Student,Genomics; Microbiology; Data science and machine learning; Ecology and evolutionary biology; Climate science
+Academic,Director,Ecology and evolutionary biology; Data science and machine learning; Epidemiology and public health
+Academic,Assistant Professor,Immunology
+Academic,Postdoctoral Researcher,Social sciences; Epidemiology and public health
+Academic,Assistant Professor,Ecology and evolutionary biology
+Academic,Postdoctoral Researcher,Virology; Ecology and evolutionary biology
+Academic,Postdoctoral Researcher,Microbiology; Ecology and evolutionary biology
+Academic,Associate Professor,Computational biology; Ecology and evolutionary biology
+Academic,Research Scientist and Staff,Epidemiology and public health; Ecology and evolutionary biology; Genomics
+Academic,Graduate Student,Computational biology; Ecology and evolutionary biology
+Academic,Assistant Professor,Ecology and evolutionary biology; Climate science
+Academic,Assistant Professor,Ecology and evolutionary biology; Computational biology
+Academic,Associate Professor,Ecology and evolutionary biology; Genomics; Data science and machine learning
+Academic,Associate Professor,Ecology and evolutionary biology; Virology
+"Academic,Other",Professor,Ecology and evolutionary biology; Immunology
+Academic,Assistant Professor,Ecology and evolutionary biology; Conservation and One Health
+"Academic,NGO",Professor,Genomics; Epidemiology and public health; Virology; Ecology and evolutionary biology; Climate science; Computational biology; Data science and machine learning; Conservation and One Health
+"Academic,Veterinarian",Graduate Student,Epidemiology and public health
+Academic,Graduate Student,Not reported
