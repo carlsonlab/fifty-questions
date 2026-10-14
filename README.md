@@ -15,8 +15,7 @@ renv::restore()          # installs the exact package versions in renv.lock
 
 Packages are always called with `pkg::`, so there's no `library()` setup to worry about.
 
-## What's in here
-
+## Repo structure
 ```
 renv.lock                     # package versions
 data/
@@ -36,7 +35,7 @@ output/
   fig2_network.png
 ```
 
-## Running it
+## Reproducing figures
 
 Run everything from the project root, since the scripts use relative paths, and create `output/` before running the figure scripts.
 
