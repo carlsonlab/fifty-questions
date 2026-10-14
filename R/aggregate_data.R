@@ -4,7 +4,7 @@ set.seed(42)
 dir.create("data/processed", showWarnings = FALSE, recursive = TRUE)
 
 # Read raw data and keep ONLY the standardized, recoded fields
-resp <- readr::read_csv("data/anon_experts.csv", show_col_types = FALSE) |>
+resp <- readr::read_csv("data/raw/anon_experts.csv", show_col_types = FALSE) |>
   dplyr::rename(
     role = `Professional role`,
     title = Title,
