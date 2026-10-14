@@ -79,7 +79,7 @@ theme_edges <- dplyr::count(match_long, full_theme, keyword, name = "n_questions
 #   dplyr::summarise(topics = paste(keyword, collapse = "; "), .by = ms_number)
 
 # df_out <- df |>
-#   dplyr::select(-full_theme, -ms_question, -clean_text) |>
+#   dplyr::select(-full_theme, -clean_text) |>
 #   dplyr::left_join(topics_by_q, by = "ms_number") |>
 #   dplyr::mutate(topics = tidyr::replace_na(topics, ""))
 
