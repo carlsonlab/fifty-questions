@@ -42,7 +42,6 @@ Run everything from the project root, since the scripts use relative paths, and 
 **A note on the data:** `aggregate_data.R` can't be run without the participant-level survey data. That file is held only by the project team because of privacy and data restrictions, so it isn't included here. The script is shared so you can see exactly how the cleaning was done (see the manuscript and consent sheet for more details). You don't need it to make the figures since both are produced from the aggregated files already in `data/processed/`.
 
 ```r
-source("R/aggregate_data.R")   # project team only (needs the raw survey data)
 source("R/fig1_respondents.R")
 source("R/fig2_network.R")
 ```
