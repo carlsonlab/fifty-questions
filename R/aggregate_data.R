@@ -45,7 +45,7 @@ country_counts <- country_long |>
   dplyr::select(country, iso3, n, pct_mentions, pct_respondents) |>
   dplyr::arrange(dplyr::desc(n), country)
 
-readr::write_csv(country_counts, "data/processed/country_counts.csv")
+readr::write_csv(country_counts, "data/processed/country_counts_survey.csv")
 
 # Participants by recoded/standardized role, career stage, expertise
 # No country, no id, rows shuffled so row order can't map back to the raw file
