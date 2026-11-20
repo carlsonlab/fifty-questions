@@ -5,9 +5,6 @@ node_size_range <- c(4, 15)
 # 1 = label outside the node edge, 0 = label centered on node
 label_hug <- 0.8
 
-# Define labels for legend / categories to match with
-# Abberviations are used in the .csv for 'ms_theme'
-# So those are set as the "names" for easy matching
 themes <- c(
   "ECAD" = "Environmental Changes and Anthropogenic Disturbance (ECAD)",
   "BHIC" = "Host Interactions and Communities (BHIC)",
@@ -64,14 +61,15 @@ kw_patterns <- c(
 
 keywords <- names(kw_patterns)
 
-# For every keyword, grab the questions whose text matches the regex
+# Match each keyword to questions 
 match_long <- purrr::imap_dfr(kw_patterns, \(pat, kw) {
   df |>
     dplyr::filter(stringr::str_detect(clean_text, pat)) |>
     dplyr::transmute(ms_number, keyword = kw, full_theme)
 })
 
-# Count how many questions in each theme matched each keyword, so that each row (question/keyword) becomes one edge and n_questions is the weight
+# Row (question/keyword) = one edge 
+# n_questions = weight
 theme_edges <- dplyr::count(match_long, full_theme, keyword, name = "n_questions")
 
 # print(match_long |> dplyr::count(keyword, sort = TRUE), n = Inf)
@@ -82,7 +80,7 @@ theme_edges <- dplyr::count(match_long, full_theme, keyword, name = "n_questions
 
 # readr::write_csv(df_out, "data/processed/50qs_network.csv")
 
-# Make a node table for every theme and keyword and give it the type label to keep theme nodes separate from keyword/topic nodes
+# Node table for every theme and keyword and give it the type label to keep theme nodes separate from keyword/topic nodes
 # size_val = number of questions matching each keyword
 nodes <- tibble::tibble(
   name = c(names(theme_colors), keywords),
@@ -92,7 +90,7 @@ nodes <- tibble::tibble(
   dplyr::left_join(dplyr::count(match_long, keyword, name = "size_val"), by = c(name = "keyword"))
 
 # theme name (from) and keywords (to) 
-# from_theme is its own column so edges can be colored by theme without looking up node names later
+# from_theme is its own column so edges can be colored by theme 
 df_tg <- tidygraph::tbl_graph(
   nodes = nodes,
   edges = dplyr::transmute(theme_edges, from = full_theme, to = keyword, n_questions, from_theme = full_theme),
