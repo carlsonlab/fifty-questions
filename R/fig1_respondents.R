@@ -1,4 +1,4 @@
-country_counts <- readr::read_csv("data/processed/country_counts.csv", show_col_types = FALSE)
+country_counts <- readr::read_csv("data/processed/country_counts_survey.csv", show_col_types = FALSE)
 
 resp <- readr::read_csv("data/processed/participants_recoded.csv", show_col_types = FALSE) |>
   dplyr::mutate(
@@ -54,14 +54,14 @@ map_a <- ggplot2::ggplot(world) +
   ggplot2::labs(title = "A) Geographic distribution of respondents") +
   ggplot2::theme_void() +
   ggplot2::theme(
-    plot.title = ggplot2::element_text(face = "bold", size = 12),
+    plot.title = ggplot2::element_text(face = "bold", size = 20),
     plot.title.position = "plot",
     plot.background = ggplot2::element_rect(fill = "white", color = NA),
     legend.position = "inside",
     legend.position.inside = c(0.15, 0.3),
     legend.background = ggplot2::element_rect(fill = "white", color = NA),
-    legend.title = ggplot2::element_text(size = 9, face = "bold", color = "#1A1A1A"),
-    legend.text = ggplot2::element_text(size = 9, color = "#333333"),
+    legend.title = ggplot2::element_text(size = 14, face = "bold", color = "#1A1A1A"),
+    legend.text = ggplot2::element_text(size = 14, color = "#333333"),
     legend.key.size = grid::unit(0.5, "cm")
   )
 
@@ -112,7 +112,7 @@ bar_panel <- function(df, title, sort = TRUE, x_max = 1) {
     ggplot2::geom_col(fill = "grey35", width = 0.7) +
     ggplot2::geom_text(
       ggplot2::aes(label = sprintf("%d (%.0f%%)", n, 100 * n / n_resp)),
-      hjust = -0.1, size = 3.2, color = "grey25"
+      hjust = -0.1, size = 4, color = "grey25"
     ) +
     ggplot2::scale_x_continuous(
       limits = c(0, x_max),
@@ -126,9 +126,9 @@ bar_panel <- function(df, title, sort = TRUE, x_max = 1) {
     ggplot2::theme(
       panel.grid.major.y = ggplot2::element_blank(),
       panel.grid.minor = ggplot2::element_blank(),
-      plot.title = ggplot2::element_text(face = "bold", size = 12),
+      plot.title = ggplot2::element_text(face = "bold", size = 20),
       plot.title.position = "plot",
-      axis.text.y = ggplot2::element_text(color = "grey15"),
+      axis.text.y = ggplot2::element_text(color = "grey15", size = 14),
       plot.background = ggplot2::element_rect(fill = "white", color = NA)
     )
 }
@@ -148,3 +148,5 @@ fig1 <- patchwork::wrap_plots(
 ggplot2::ggsave("output/fig1_characteristics.png", fig1,
   width = 14, height = 11.5, dpi = 600, bg = "white"
 )
+
+
