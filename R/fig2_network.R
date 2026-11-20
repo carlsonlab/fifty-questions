@@ -1,11 +1,16 @@
 set.seed(42)
 
+font_scale <- 1.3
+node_size_range <- c(4, 15)
+# 1 = label outside the node edge, 0 = label centered on node
+label_hug <- 0.8
+
 # Define labels for legend / categories to match with
 # Abberviations are used in the .csv for 'ms_theme'
 # So those are set as the "names" for easy matching
 themes <- c(
   "ECAD" = "Environmental Changes and Anthropogenic Disturbance (ECAD)",
-  "HIC" = "Host Interactions and Communities (HIC)",
+  "BHIC" = "Host Interactions and Communities (BHIC)",
   "MDT" = "Methods, Data, and Tools (MDT)",
   "OPPR" = "Outbreak Prevention, Preparedness, and Response (OPPR)",
   "TDE" = "Transmission Dynamics and Emergence (TDE)",
@@ -13,13 +18,12 @@ themes <- c(
   "WDHD" = "Within-Host Dynamics and Host Defense (WDHD)"
 )
 
-theme_order <- c("VE", "WDHD", "HIC", "TDE", "ECAD", "OPPR", "MDT")
+theme_order <- c("VE", "WDHD", "BHIC", "TDE", "ECAD", "OPPR", "MDT")
 theme_colors <- stats::setNames(
   as.character(MoMAColors::moma.colors("Panton", n = length(themes))),
   themes[theme_order]
 )
 
-# Currently using the final ms version of the question (ms_question) to define the network, but could swap out for the full range of questions potentially
 df <- readr::read_csv("data/processed/50qs_network.csv", show_col_types = FALSE) |>
   dplyr::mutate(ms_theme = stringr::str_to_upper(stringr::str_squish(ms_theme))) |>
   dplyr::filter(!is.na(ms_theme), !is.na(ms_question)) |>
@@ -61,7 +65,6 @@ kw_patterns <- c(
 keywords <- names(kw_patterns)
 
 # For every keyword, grab the questions whose text matches the regex
-# Comes out in long format already (one row per question/keyword match) with theme joined on, so no matrix -> rownames -> pivot detour
 match_long <- purrr::imap_dfr(kw_patterns, \(pat, kw) {
   df |>
     dplyr::filter(stringr::str_detect(clean_text, pat)) |>
@@ -73,20 +76,14 @@ theme_edges <- dplyr::count(match_long, full_theme, keyword, name = "n_questions
 
 # print(match_long |> dplyr::count(keyword, sort = TRUE), n = Inf)
 
-# # Optional but export the updated CSV with one cell for all the topics for each question (row), separated by semicolons
-# # NOTE: This will overwrite the previous file unless you rename the csv...so just do this / uncomment below if you change any regex/keywords
+# # # NOTE: This will overwrite the previous file unless you rename the csv...so just do this / uncomment below if you change any regex/keywords
 # topics_by_q <- match_long |>
 #   dplyr::summarise(topics = paste(keyword, collapse = "; "), .by = ms_number)
-
-# df_out <- df |>
-#   dplyr::select(-full_theme, -clean_text) |>
-#   dplyr::left_join(topics_by_q, by = "ms_number") |>
-#   dplyr::mutate(topics = tidyr::replace_na(topics, ""))
 
 # readr::write_csv(df_out, "data/processed/50qs_network.csv")
 
 # Make a node table for every theme and keyword and give it the type label to keep theme nodes separate from keyword/topic nodes
-# size_val = number of questions matching each keyword (NA for themes, they have a fixed size)
+# size_val = number of questions matching each keyword
 nodes <- tibble::tibble(
   name = c(names(theme_colors), keywords),
   node_type = rep(c("theme", "keyword"), c(length(theme_colors), length(keywords)))
@@ -94,9 +91,8 @@ nodes <- tibble::tibble(
   dplyr::filter(name %in% c(theme_edges$full_theme, theme_edges$keyword)) |>
   dplyr::left_join(dplyr::count(match_long, keyword, name = "size_val"), by = c(name = "keyword"))
 
-# Use the theme name (from) and keywords (to) in the edge list, and use n_questions as the weight
+# theme name (from) and keywords (to) 
 # from_theme is its own column so edges can be colored by theme without looking up node names later
-# (undirected graphs can flip from/to, so this is safer anyway)
 df_tg <- tidygraph::tbl_graph(
   nodes = nodes,
   edges = dplyr::transmute(theme_edges, from = full_theme, to = keyword, n_questions, from_theme = full_theme),
@@ -104,14 +100,16 @@ df_tg <- tidygraph::tbl_graph(
 ) |>
   tidygraph::activate(nodes) |>
   dplyr::mutate(
-    # Keywords only connect to themes, so degree = number of themes a topic spans
+    # Keywords only connect to themes, degree = number of themes a topic spans
     n_themes = tidygraph::centrality_degree(),
-    # Concentric layout: themes on the outer ring (0), topics get the number of themes they span, so the more connected topics are in the middle
-    # size_val term breaks ties so topics don't overlap
-    cent = ifelse(node_type == "theme", 0, n_themes + 0.01 * size_val),
+    # Concentric layout
+    # themes on the outer ring (0), topics get the number of themes they span, so the more connected topics are in the middle
+    cent = ifelse(node_type == "theme", 0, n_themes + 0.01),
     # label text + repel point size (themes get a big one so labels stay away from them), and abbreviations for inside the theme nodes
     lbl = ifelse(node_type == "keyword", stringr::str_wrap(name, 20), ""),
-    pt = ifelse(node_type == "theme", 45, 4 + 11 * size_val / max(size_val, na.rm = TRUE)),
+    node_pt = node_size_range[1] + diff(node_size_range) * sqrt(scales::rescale(size_val)),
+    # shrink it by label_hug so labels stay
+    pt = ifelse(node_type == "theme", 45, label_hug * node_pt),
     abbr = names(themes)[match(name, themes)]
   )
 
@@ -209,32 +207,40 @@ fig2 <- ggraph::ggraph(df_tg, layout = "manual", x = xy[, 1], y = xy[, 2]) +
     data = \(d) dplyr::filter(d, node_type == "keyword"),
     ggplot2::aes(size = size_val), shape = 21, fill = "grey92", color = "grey40", stroke = 0.3
   ) +
-  ggplot2::scale_size_continuous(range = c(4, 15), guide = "none") +
+  ggplot2::scale_size_continuous(
+    range = node_size_range,
+    breaks = scales::breaks_pretty(n = 4),
+    name = "Number of questions\nper topic"
+  ) +
   # theme nodes are colorful and larger and heptagons
   ggfoundry::geom_casting(
     data = \(d) dplyr::filter(d, node_type == "theme"),
     ggplot2::aes(x = x, y = y, fill = name),
     shape = "heptagon", colour = "white", size = 0.18
   ) +
-  # keyword labels - repelled from themes and eahc other, and have background halo and little segments pointing for readability
+  # low force + high force_pull
+  # (min.segment.length) for big pushes
   ggraph::geom_node_text(
     ggplot2::aes(label = lbl, point.size = pt),
-    size = 3.8,
-    lineheight = 0.9,
+    size = 3.8 * font_scale,
+    lineheight = 0.85,
     color = "black",
     repel = TRUE,
+    seed = 42,
     max.overlaps = Inf,
-    force = 5.5,
-    force_pull = 1,
-    box.padding = 0.4,
-    point.padding = 0.3,
-    bg.color = "white", bg.r = 0.2, segment.size = 0.25, segment.alpha = 0.8
+    force = 0.5,
+    force_pull = 3,
+    box.padding = 0.05,
+    point.padding = 0,
+    min.segment.length = grid::unit(0.5, "lines"),
+    bg.color = "white", bg.r = 0.15,
+    segment.size = 0.3, segment.color = "grey30"
   ) +
   #  abbreviations inside theme nodes
   ggraph::geom_node_text(
     data = \(d) dplyr::filter(d, node_type == "theme"),
     ggplot2::aes(label = abbr),
-    size = 4.8, fontface = "bold", color = "white"
+    size = 4.8 * font_scale, fontface = "bold", color = "white"
   ) +
   # LEGEND
   ggplot2::scale_fill_manual(
@@ -252,8 +258,15 @@ fig2 <- ggraph::ggraph(df_tg, layout = "manual", x = xy[, 1], y = xy[, 2]) +
         legend.key.height = grid::unit(2.4, "lines")
       )
     ),
-    edge_width = ggplot2::guide_legend(
+    # topic node size legend
+    size = ggplot2::guide_legend(
       order = 2,
+      theme = ggplot2::theme(
+        legend.key.spacing.y = grid::unit(4, "pt")
+      )
+    ),
+    edge_width = ggplot2::guide_legend(
+      order = 3,
       theme = ggplot2::theme(
         legend.key.width = grid::unit(2.4, "lines"),
         legend.margin = ggplot2::margin(l = 10),
@@ -261,11 +274,11 @@ fig2 <- ggraph::ggraph(df_tg, layout = "manual", x = xy[, 1], y = xy[, 2]) +
       )
     )
   ) +
-  ggplot2::theme_void(base_size = 12) +
+  ggplot2::theme_void(base_size = 12 * font_scale) +
   ggplot2::theme(
     legend.position = "right",
-    legend.title = ggplot2::element_text(face = "bold", size = 16),
-    legend.text = ggplot2::element_text(size = 13, lineheight = 0.9),
+    legend.title = ggplot2::element_text(face = "bold", size = 16 * font_scale),
+    legend.text = ggplot2::element_text(size = 13 * font_scale, lineheight = 0.9),
     legend.key.size = grid::unit(1, "lines"),
     legend.key.spacing.y = grid::unit(2, "pt"),
     legend.box.spacing = grid::unit(2, "cm"),
@@ -273,4 +286,4 @@ fig2 <- ggraph::ggraph(df_tg, layout = "manual", x = xy[, 1], y = xy[, 2]) +
   ) +
   ggplot2::coord_fixed(clip = "off")
 
-ggplot2::ggsave("output/fig2_network.png", fig2, width = 16, height = 10, dpi = 600, bg = "white")
+ggplot2::ggsave("output/fig2_network.png", fig2, width = 18, height = 12, dpi = 600, bg = "white")
