@@ -23,7 +23,6 @@ renv.lock                       # package versions
 data/
   raw/
     anon_experts.csv            # anonymized survey responses (project team only)
-    original_qs.csv             # full pool of submitted questions + original themes
     50qs_network.csv            # final 50 q's, aligned to stages
   processed/
     50qs_network_themes.csv     # like above but with themes from keywords
@@ -48,7 +47,3 @@ Note that `aggregate_data.R` can't be run without the participant-level survey d
 source("R/fig1_respondents.R")
 source("R/fig2_network.R")
 ```
-
-## Notes
-
-- `original_qs.csv` isn't used by any script - it's just the submitted questions and is here for reference
