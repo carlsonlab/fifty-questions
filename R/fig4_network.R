@@ -184,7 +184,7 @@ blob_df <- theme_edges |>
 
 # xy = node coordinates (col 1 = x, col 2 = y)
 # can play w concavity and radius for increasing the organic-ness of the shape
-fig2 <- ggraph::ggraph(df_tg, layout = "manual", x = xy[, 1], y = xy[, 2]) +
+fig4 <- ggraph::ggraph(df_tg, layout = "manual", x = xy[, 1], y = xy[, 2]) +
   ggforce::geom_mark_hull(
     data = blob_df,
     ggplot2::aes(x = x, y = y, fill = grp, group = grp),
@@ -287,4 +287,4 @@ fig2 <- ggraph::ggraph(df_tg, layout = "manual", x = xy[, 1], y = xy[, 2]) +
   ) +
   ggplot2::coord_fixed(clip = "off")
 
-ggplot2::ggsave("output/fig2_network.png", fig2, width = 18, height = 12, dpi = 600, bg = "white")
+ggplot2::ggsave("output/fig4_network.png", fig4, width = 18, height = 12, dpi = 600, bg = "white")

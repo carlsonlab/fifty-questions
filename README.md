@@ -30,11 +30,11 @@ data/
     participants_recoded.csv    # role / career stage / expertise (standardized)
 R/
   aggregate_data.R              # participant characteristics, aggregated
-  fig1_respondents.R            # Figure 1: respondent characteristics
-  fig2_network.R                # Figure 2: theme-topic network
+  fig2_respondents.R            # Figure 2: respondent characteristics
+  fig4_network.R                # Figure 4: theme-topic network
 output/
-  fig1_characteristics.png
-  fig2_network.png
+  fig2_characteristics.png
+  fig4_network.png
 ```
 
 ## Reproducing figures
@@ -44,6 +44,6 @@ The scripts use relative paths, as anyone pure of heart would do. They also crea
 Note that `aggregate_data.R` can't be run without the participant-level survey data. That file is held only by the project team (TEL, HR, CJC, CAS) because of privacy and data restrictions per our IRB, so it isn't included here. The script is shared so you can see how the cleaning was done (refer to the manuscript and consent sheet for more details). You don't need it to make the figures since both are produced from the aggregated files already in `data/processed/`.
 
 ```r
-source("R/fig1_respondents.R")
-source("R/fig2_network.R")
+source("R/fig2_respondents.R")
+source("R/fig4_network.R")
 ```

@@ -140,12 +140,12 @@ p_exp <- bar_panel(exp_counts, "D) Areas of expertise")
 
 left <- patchwork::wrap_plots(p_role, p_stage, ncol = 1, heights = c(1, 1.3))
 bottom <- patchwork::wrap_plots(left, p_exp, nrow = 1, widths = c(1, 1.1))
-fig1 <- patchwork::wrap_plots(
+fig2 <- patchwork::wrap_plots(
   patchwork::wrap_elements(full = map_a), bottom,
   ncol = 1, heights = grid::unit(c(6, 1), c("in", "null"))
 )
 
-ggplot2::ggsave("output/fig1_characteristics.png", fig1,
+ggplot2::ggsave("output/fig2_characteristics.png", fig2,
   width = 14, height = 11.5, dpi = 600, bg = "white"
 )
 
