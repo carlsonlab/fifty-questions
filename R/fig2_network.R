@@ -21,7 +21,7 @@ theme_colors <- stats::setNames(
   themes[theme_order]
 )
 
-df <- readr::read_csv("data/processed/50qs_network.csv", show_col_types = FALSE) |>
+df <- readr::read_csv("data/raw/50qs_network.csv", show_col_types = FALSE) |>
   dplyr::mutate(ms_theme = stringr::str_to_upper(stringr::str_squish(ms_theme))) |>
   dplyr::filter(!is.na(ms_theme), !is.na(ms_question)) |>
   dplyr::mutate(
@@ -74,11 +74,14 @@ theme_edges <- dplyr::count(match_long, full_theme, keyword, name = "n_questions
 
 # print(match_long |> dplyr::count(keyword, sort = TRUE), n = Inf)
 
-# # # NOTE: This will overwrite the previous file unless you rename the csv...so just do this / uncomment below if you change any regex/keywords
-# topics_by_q <- match_long |>
-#   dplyr::summarise(topics = paste(keyword, collapse = "; "), .by = ms_number)
+topics_by_q <- match_long |>
+  dplyr::summarise(topics = paste(keyword, collapse = "; "), .by = ms_number)
 
-# readr::write_csv(df_out, "data/processed/50qs_network.csv")
+df_out <- df |>
+  dplyr::select(-dplyr::any_of(c("topics", "clean_text", "full_theme"))) |>
+  dplyr::left_join(topics_by_q, by = "ms_number")
+
+readr::write_csv(df_out, "data/processed/50qs_network_topics.csv")
 
 # Node table for every theme and keyword and give it the type label to keep theme nodes separate from keyword/topic nodes
 # size_val = number of questions matching each keyword

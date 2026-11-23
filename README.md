@@ -24,8 +24,9 @@ data/
   raw/
     anon_experts.csv            # anonymized survey responses (project team only)
     original_qs.csv             # full pool of submitted questions + original themes
+    50qs_network.csv            # final 50 q's, aligned to stages
   processed/
-    50qs_network.csv            # final 50 q's, aligned to stages, themes, + keywords
+    50qs_network_themes.csv     # like above but with themes from keywords
     country_counts_survey.csv   # respondents per country
     participants_recoded.csv    # role / career stage / expertise (standardized)
 R/
