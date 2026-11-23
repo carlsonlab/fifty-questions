@@ -1,6 +1,6 @@
 # Emerging questions in the ecology and evolution of emerging viruses
 
-Data and code for figures 1 and 2 in Lavelle et al.
+Data and code for figures 2 and 4 in Lavelle et al.
 
 ## Set up and installing packages
 
